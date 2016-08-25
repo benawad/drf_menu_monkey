@@ -25,10 +25,9 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, related_name='ingredients')
     name = models.CharField(max_length=200)
-    amount = models.IntegerField(default=1)
 
     def __unicode__(self):
-        return '%d: %s' % (self.amount, self.name)
+        return str(self.name)
 
 # class GroceryList(models.Model):
     # ingredients = models.ManyToManyField(Ingredient)
