@@ -2,16 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# class Menu(models.Model):
-    # menu_name = models.CharField(max_length=200)
-    # public = models.BooleanField(default=False)
-    # saved = models.ManyToManyField(User, blank=True, related_name='menu_saved')
-    # owner = models.ForeignKey(User)
-    
-    # def __str__(self):
-        # return self.menu_name
-
-
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)
 
@@ -20,7 +10,6 @@ class Ingredient(models.Model):
 
 
 class Recipe(models.Model):
-    # menus = models.ManyToManyField(Menu, blank=True)
     title = models.CharField(max_length=200)
     # picture = models.ImageField(upload_to='images', null=True, blank=True)
     instructions = models.TextField()
@@ -33,5 +22,16 @@ class Recipe(models.Model):
         return self.title
 
 
-# class GroceryList(models.Model):
-    # ingredients = models.ManyToManyField(Ingredient)
+class Menu(models.Model):
+    name = models.CharField(max_length=200)
+    public = models.BooleanField(default=False)
+    saved = models.ManyToManyField(User, blank=True, related_name='menu_saved')
+    owner = models.ForeignKey(User)
+    recipes = models.ManyToManyField(Recipe, blank=True, related_name='menu_recipes')
+    
+    def __str__(self):
+        return self.menu_name
+
+
+class Grocery(models.Model):
+    ingredients = models.ManyToManyField(Ingredient)
