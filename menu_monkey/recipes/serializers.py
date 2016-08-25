@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    ingredients = serializers.StringRelatedField(many=True)
     class Meta:
         model = Recipe
 
