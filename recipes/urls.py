@@ -3,7 +3,7 @@ from recipes import views
 from rest_framework.routers import DefaultRouter
 
 # Create a router and register our viewsets with it.
-router = DefaultRouter()
+router = DefaultRouter(schema_title='Recipe box API')
 router.register(r'recipes', views.RecipeViewSet)
 router.register(r'ingredients', views.IngredientViewSet)
 router.register(r'menu', views.MenuViewSet)
