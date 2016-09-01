@@ -128,3 +128,10 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGE_SIZE': 10
 }
+
+import os
+if os.environ.get('HEROKU'):  # heroku config:set HEROKU=1
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config()
+
+LOGIN_REDIRECT_URL = '/'
